@@ -13,7 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/**
+ * Class PropertyController
+ * @package App\Controller
+ */
 class PropertyController extends AbstractController
 {
     /**
@@ -26,6 +29,11 @@ class PropertyController extends AbstractController
      */
     private $em;
 
+    /**
+     * PropertyController constructor.
+     * @param PropertyRepository $repository
+     * @param ObjectManager $em
+     */
     public function __construct(PropertyRepository $repository, ObjectManager $em)
     {
         $this->repository = $repository;

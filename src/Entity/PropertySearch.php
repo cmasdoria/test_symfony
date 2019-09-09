@@ -60,7 +60,7 @@ class PropertySearch
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|null
      */
     public function getOptions(): ArrayCollection
     {
@@ -68,7 +68,7 @@ class PropertySearch
     }
 
     /**
-     * @param ArrayCollection $options
+     * @param ArrayCollection|null $options
      */
     public function setOptions(ArrayCollection $options): void
     {

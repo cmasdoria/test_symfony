@@ -1084,69 +1084,81 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="266" parent="243" name="PRIMARY">
+    <column id="266" parent="243" name="filename">
+      <Position>15</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="267" parent="243" name="updated_at">
+      <Position>16</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="268" parent="243" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="267" parent="244" name="property_id">
+    <column id="269" parent="244" name="property_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="244" name="option_id">
+    <column id="270" parent="244" name="option_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="269" parent="244" name="IDX_24F16FCC549213EC">
+    <index id="271" parent="244" name="IDX_24F16FCC549213EC">
       <ColNames>property_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="270" parent="244" name="IDX_24F16FCCA7C41D6F">
+    <index id="272" parent="244" name="IDX_24F16FCCA7C41D6F">
       <ColNames>option_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="271" parent="244" name="PRIMARY">
+    <key id="273" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>property_id
 option_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="272" parent="244" name="FK_24F16FCC549213EC">
+    <foreign-key id="274" parent="244" name="FK_24F16FCC549213EC">
       <ColNames>property_id</ColNames>
       <RefTableName>property</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <foreign-key id="273" parent="244" name="FK_24F16FCCA7C41D6F">
+    <foreign-key id="275" parent="244" name="FK_24F16FCCA7C41D6F">
       <ColNames>option_id</ColNames>
       <RefTableName>option</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="274" parent="245" name="id">
+    <column id="276" parent="245" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="245" name="username">
+    <column id="277" parent="245" name="username">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="245" name="password">
+    <column id="278" parent="245" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="277" parent="245" name="PRIMARY">
+    <key id="279" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
