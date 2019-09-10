@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface,\Serializable
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -27,16 +27,27 @@ class User implements UserInterface,\Serializable
      */
     private $password;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
+    /**
+     * @param string $username
+     *
+     * @return User
+     */
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -44,11 +55,19 @@ class User implements UserInterface,\Serializable
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
+    /**
+     * @param string $password
+     *
+     * @return User
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -57,7 +76,7 @@ class User implements UserInterface,\Serializable
     }
 
     /**
-     * @return (Role|string)[] The user roles
+     * @return array (Role|string)[] The user roles
      */
     public function getRoles()
     {
@@ -72,31 +91,36 @@ class User implements UserInterface,\Serializable
         return null;
     }
 
+    /**
+     *
+     */
     public function eraseCredentials()
     {
     }
 
     /**
      * String representation of object
-     * @link https://php.net/manual/en/serializable.serialize.php
+     * @link  https://php.net/manual/en/serializable.serialize.php
      * @return string the string representation of the object or null
      * @since 5.1.0
      */
     public function serialize()
     {
         return serialize([
-          $this->id,
-          $this->username,
-          $this->password
+            $this->id,
+            $this->username,
+            $this->password
         ]);
     }
 
     /**
      * Constructs the object
-     * @link https://php.net/manual/en/serializable.unserialize.php
+     * @link  https://php.net/manual/en/serializable.unserialize.php
+     *
      * @param string $serialized <p>
-     * The string representation of the object.
-     * </p>
+     *                           The string representation of the object.
+     *                           </p>
+     *
      * @return void
      * @since 5.1.0
      */
@@ -106,6 +130,7 @@ class User implements UserInterface,\Serializable
             $this->id,
             $this->username,
             $this->password
-            ) = unserialize($serialized, ['allowed_classes' => false]);
+            )
+            = unserialize($serialized, ['allowed_classes' => false]);
     }
 }

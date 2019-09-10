@@ -3,6 +3,13 @@
 namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Class Contact
+ * @package App\Entity
+ *
+ * @author  Clément Magnin <cma.asdoria@gmail.com>
+ */
 class Contact
 {
     /**

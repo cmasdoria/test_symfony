@@ -2,7 +2,7 @@
 
 {% block title %}Bienvenue !{% endblock %}
 
-{%  block body %}
+{% block body %}
 
     <div class="container mt-4">
 
@@ -14,7 +14,7 @@
             </div>
         {% endfor %}
 
-        <table class ="table table-striped">
+        <table class="table table-striped">
             <thread>
                 <tr>
                     <th>Nom</th>
@@ -23,23 +23,23 @@
             </thread>
             <tbody>
             {% for option in options %}
-            <tr>
-                <td>{{ option.name }}</td>
-                <td>
-                    <a href="{{ path('admin.option.edit', {id: option.id })}}" class="btn btn-secondary">Éditer</a>
-                    <form method="post" action="{{ path('admin.option.delete', {id: option.id}) }}" style="display:
+                <tr>
+                    <td>{{ option.name }}</td>
+                    <td>
+                        <a href="{{ path('admin.option.edit', {id: option.id }) }}" class="btn btn-secondary">Éditer</a>
+                        <form method="post" action="{{ path('admin.option.delete', {id: option.id}) }}" style="display:
                     inline-block" onsubmit="return confirm('Êtes-vous sûr ?')">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ option.id) }}">
-                        <button class="btn btn-danger">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ option.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>
-            <div class="text-right">
-                <a href="{{ path('admin.option.new') }}" class="btn btn-secondary" >Créer un nouveau bien</a>
-            </div>
+        <div class="text-right">
+            <a href="{{ path('admin.option.new') }}" class="btn btn-secondary">Créer un nouveau bien</a>
+        </div>
     </div>
 {% endblock %}

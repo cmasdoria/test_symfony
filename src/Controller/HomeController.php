@@ -10,20 +10,22 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class HomeController
  * @package App\Controller
+ *
+ * @author  Clément Magnin <cma.asdoria@gmail.com>
  */
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      * @param PropertyRepository $repository
+     *
      * @return Response
      */
-
     public function index(PropertyRepository $repository): Response
     {
         $properties = $repository->findLatest();
-        return $this->render('pages/home.html.twig',[
+        return $this->render('pages/home.html.twig', [
             'properties' => $properties
-         ]);
+        ]);
     }
 }

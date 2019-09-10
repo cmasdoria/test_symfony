@@ -9,23 +9,26 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Exception;
-use PhpParser\ErrorHandler\Collecting;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
+ * Class Property
+ * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
  * @Vich\Uploadable()
+ *
+ * @author  Clément Magnin <cma.asdoria@gmail.com>
  */
 class Property
 {
-
-    const HEAT = [
-        0 => 'Électrique',
-        1 => 'Gaz',
-    ];
+    const HEAT
+        = [
+            0 => 'Électrique',
+            1 => 'Gaz',
+        ];
 
     /**
      * @ORM\Id()
@@ -133,7 +136,7 @@ class Property
     public function __construct()
     {
         $this->created_at = new DateTime();
-        $this->options = new ArrayCollection();
+        $this->options    = new ArrayCollection();
     }
 
     /**
@@ -154,6 +157,7 @@ class Property
 
     /**
      * @param string $title
+     *
      * @return Property
      */
     public function setTitle(string $title): self
@@ -166,7 +170,7 @@ class Property
     /**
      * @return string
      */
-    public function getSlug() : string
+    public function getSlug(): string
     {
         return (new Slugify())->slugify($this->title);
     }
@@ -181,6 +185,7 @@ class Property
 
     /**
      * @param string|null $description
+     *
      * @return Property
      */
     public function setDescription(?string $description): self
@@ -191,7 +196,7 @@ class Property
     }
 
     /**
-     * @return int|null
+     * @return int
      */
     public function getSurface(): ?int
     {
@@ -200,6 +205,7 @@ class Property
 
     /**
      * @param int $surface
+     *
      * @return Property
      */
     public function setSurface(int $surface): self
@@ -219,6 +225,7 @@ class Property
 
     /**
      * @param int $rooms
+     *
      * @return Property
      */
     public function setRooms(int $rooms): self
@@ -238,6 +245,7 @@ class Property
 
     /**
      * @param int $bedrooms
+     *
      * @return Property
      */
     public function setBedrooms(int $bedrooms): self
@@ -257,6 +265,7 @@ class Property
 
     /**
      * @param int $floor
+     *
      * @return Property
      */
     public function setFloor(int $floor): self
@@ -276,6 +285,7 @@ class Property
 
     /**
      * @param int $price
+     *
      * @return Property
      */
     public function setPrice(int $price): self
@@ -288,9 +298,9 @@ class Property
     /**
      * @return string
      */
-    public function getFormattedPrice() : string
+    public function getFormattedPrice(): string
     {
-        return number_format($this->price,0, '', ' ');
+        return number_format($this->price, 0, '', ' ');
     }
 
     /**
@@ -303,6 +313,7 @@ class Property
 
     /**
      * @param int $heat
+     *
      * @return Property
      */
     public function setHeat(int $heat): self
@@ -330,6 +341,7 @@ class Property
 
     /**
      * @param string $city
+     *
      * @return Property
      */
     public function setCity(string $city): self
@@ -349,6 +361,7 @@ class Property
 
     /**
      * @param string $address
+     *
      * @return Property
      */
     public function setAddress(string $address): self
@@ -368,6 +381,7 @@ class Property
 
     /**
      * @param string $postal_code
+     *
      * @return Property
      */
     public function setPostalCode(string $postal_code): self
@@ -388,6 +402,7 @@ class Property
 
     /**
      * @param bool $sold
+     *
      * @return Property
      */
     public function setSold(bool $sold): self
@@ -407,6 +422,7 @@ class Property
 
     /**
      * @param DateTimeInterface $created_at
+     *
      * @return Property
      */
     public function setCreatedAt(DateTimeInterface $created_at): self
@@ -426,6 +442,7 @@ class Property
 
     /**
      * @param Option $option
+     *
      * @return Property
      */
     public function addOption(Option $option): self
@@ -433,12 +450,13 @@ class Property
         if (!$this->options->contains($option)) {
             $this->options[] = $option;
             $option->addProperty($this);
-    }
+        }
         return $this;
     }
 
     /**
      * @param Option $option
+     *
      * @return Property
      */
     public function removeOption(Option $option): self
@@ -476,14 +494,14 @@ class Property
 
     /**
      * @param File|null $imageFile
+     *
      * @return Property
      * @throws Exception
      */
     public function setImageFile(?File $imageFile): Property
     {
         $this->imageFile = $imageFile;
-        if ($this->imageFile instanceof UploadedFile)
-        {
+        if ($this->imageFile instanceof UploadedFile) {
             $this->updated_at = new DateTime('now');
         }
         return $this;
@@ -499,6 +517,7 @@ class Property
 
     /**
      * @param DateTimeInterface $updated_at
+     *
      * @return Property
      */
     public function setUpdatedAt(DateTimeInterface $updated_at): self

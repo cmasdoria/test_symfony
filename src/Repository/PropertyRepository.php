@@ -17,6 +17,11 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class PropertyRepository extends ServiceEntityRepository
 {
+    /**
+     * PropertyRepository constructor.
+     *
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Property::class);
@@ -25,36 +30,33 @@ class PropertyRepository extends ServiceEntityRepository
 
     /**
      * @param PropertySearch $search
+     *
      * @return Query
      */
-
-    public function findAllVisibleQuery(PropertySearch $search) : Query
+    public function findAllVisibleQuery(PropertySearch $search): Query
     {
         $query = $this->findVisibleQuery();
 
-            if($search->getMaxPrice())
-            {
-                $query = $query
-                    ->andWhere('p.price <= :maxprice')
-                    ->setParameter('maxprice', $search->getMaxPrice());
-            }
+        if ($search->getMaxPrice()) {
+            $query = $query
+                ->andWhere('p.price <= :maxprice')
+                ->setParameter('maxprice', $search->getMaxPrice());
+        }
 
-            if($search->getMinSurface())
-            {
-                $query = $query
-                    ->andWhere('p.surface >= :minsurface')
-                    ->setParameter('minsurface', $search->getMinSurface());
-            }
+        if ($search->getMinSurface()) {
+            $query = $query
+                ->andWhere('p.surface >= :minsurface')
+                ->setParameter('minsurface', $search->getMinSurface());
+        }
 
-            if($search->getOptions()->count() > 0)
-            {
-                $k = 0;
-                foreach($search->getOptions() as $k => $option)
-                    $k++;
-                    $query = $query
-                        ->andWhere(":option$k MEMBER OF p.options")
-                        ->setParameter("option$k", $option);
-            }
+        if ($search->getOptions()->count() > 0) {
+            $k = 0;
+            foreach ($search->getOptions() as $k => $option)
+                $k++;
+            $query = $query
+                ->andWhere(":option$k MEMBER OF p.options")
+                ->setParameter("option$k", $option);
+        }
 
         return $query->getQuery();
     }
@@ -62,7 +64,7 @@ class PropertyRepository extends ServiceEntityRepository
     /**
      * @return Property[]
      */
-    public function findLatest() : array
+    public function findLatest(): array
     {
         return $this->findVisibleQuery(4)
             ->setMaxResults(4)
@@ -101,7 +103,10 @@ class PropertyRepository extends ServiceEntityRepository
     }
     */
 
-    private function findVisibleQuery() : QueryBuilder
+    /**
+     * @return QueryBuilder
+     */
+    private function findVisibleQuery(): QueryBuilder
     {
         return $this->createQueryBuilder('p')
             ->where('p.sold = false');

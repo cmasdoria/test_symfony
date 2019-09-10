@@ -25,20 +25,22 @@ class ContactNotification
 
     /**
      * ContactNotification constructor.
+     *
      * @param Swift_Mailer $mailer
-     * @param Environment $renderer
+     * @param Environment  $renderer
      */
     public function __construct(Swift_Mailer $mailer, Environment $renderer)
     {
-        $this->mailer = $mailer;
+        $this->mailer   = $mailer;
         $this->renderer = $renderer;
     }
 
     /**
      * @param Contact $contact
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
+     *
+     * @throws  LoaderError
+     * @throws  RuntimeError
+     * @throws  SyntaxError
      */
     public function notify(Contact $contact)
     {
