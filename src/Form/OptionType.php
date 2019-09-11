@@ -22,7 +22,8 @@ class OptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')//->add('properties')
+            ->add('name')
+            //->add('properties')
         ;
     }
 
@@ -33,6 +34,7 @@ class OptionType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Option::class,
+            'translation_domain' => 'forms'
         ]);
     }
 }
