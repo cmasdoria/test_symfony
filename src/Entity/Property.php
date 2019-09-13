@@ -526,6 +526,4 @@ class Property
 
         return $this;
     }
-
-
 }

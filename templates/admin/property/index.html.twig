@@ -42,5 +42,10 @@
         <div class="text-right">
             <a href="{{ path('admin.property.new') }}" class="btn btn-secondary">Créer un nouveau bien</a>
         </div>
+        <div class="d-flex">
+            <ul class="pagination mx-auto">
+                {{ knp_pagination_render(properties) }}
+            </ul>
+        </div>
     </div>
 {% endblock %}

@@ -3,10 +3,13 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Property;
+use App\Entity\PropertySearch;
+use App\Form\PropertySearchType;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,14 +47,26 @@ class AdminPropertyController extends AbstractController
 
     /**
      * @Route("/admin", name="admin.property.index")
+     * @param PaginatorInterface $paginator
+     * @param Request            $request
+     *
      * @return Response
      */
-    public function index()
+    public function index(PaginatorInterface $paginator, Request $request): Response
     {
-        $properties = $this->repository->findAll();
+        $search = new PropertySearch();
+        $form   = $this->createForm(PropertySearchType::class, $search);
+        $form->handleRequest($request);
+
+        $properties = $paginator->paginate($this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1),
+            12
+        );
+
         return $this->render('admin/property/index.html.twig', [
             'current_menu' => 'admin',
-            'properties'   => $properties]);
+            'properties'   => $properties,
+            'form'         => $form->createView()]);
     }
 
     /**

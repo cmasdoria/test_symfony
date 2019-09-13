@@ -36,7 +36,7 @@ class UserType extends AbstractType
                 'second_options' => array('label' => 'Répéter le mot de passe'),
             ))
             ->add('termsAccepted', CheckboxType::class, [
-                'mapped' => false,
+                'mapped'      => false,
                 'constraints' => new IsTrue(),
             ]);
     }

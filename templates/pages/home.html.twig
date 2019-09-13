@@ -22,8 +22,15 @@
                 <div class="col-3">
                     <div class="card">
                         <div class="card-body">
+                            {% if property.filename %}
+                                <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('home') }}"
+                                     alt="card-img-top" style="width: 100%; height:auto;">
+                            {% else %}
+                                <img src="{{ '/images/properties/empty.png' | imagine_filter('home') }}" alt="card-img-top"
+                                     style="width: 100%; height:auto;">
+                            {% endif %}
                             <h5 class="card-title">
-                                <a class="text-info" style="font-weight: bold; font-size: 2rem"
+                                <a class="text-info" style="font-weight: bold; font-size: 22px"
                                    href="{{ path('property.show', {id: property.id, slug: property.slug}) }}">{{ property.title }}</a>
                             </h5>
                             <p class="card-text">{{ property.city }} ({{ property.postalCode }})</p>

@@ -29,11 +29,17 @@ class PropertySearch
      */
     private $options;
 
+    /**
+     * PropertySearch constructor.
+     */
     public function __construct()
     {
         $this->options = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getMaxPrice(): ?int
     {
         return $this->maxPrice;
@@ -84,6 +90,4 @@ class PropertySearch
     {
         $this->options = $options;
     }
-
-
 }
